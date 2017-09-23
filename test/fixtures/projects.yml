@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  photoURL: MyString
+  description: MyString
+  totalCost: 1.5
+  totalNumberOfBoards: MyString
+  cutPlan: MyString
+
+two:
+  name: MyString
+  photoURL: MyString
+  description: MyString
+  totalCost: 1.5
+  totalNumberOfBoards: MyString
+  cutPlan: MyString

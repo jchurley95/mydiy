@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pieceLength: 1.5
+  pieceWidth: 1.5
+  pieceHeight: 1.5
+  pieceLabel: MyString
+  typeOfWood: MyString
+  section: one
+
+two:
+  pieceLength: 1.5
+  pieceWidth: 1.5
+  pieceHeight: 1.5
+  pieceLabel: MyString
+  typeOfWood: MyString
+  section: two

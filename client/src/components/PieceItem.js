@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom'
 
 class PieceItem extends Component {
   constructor() {
     super();
     this.state = {
-      piece: {}
+      piece: {},
+      redirect: false
     };
   }
 
@@ -31,11 +33,34 @@ class PieceItem extends Component {
     }
   } 
 
+  _deletePiece = async (e) => {
+    const projectId = this.props.match.params.projectId
+    const sectionId = this.props.match.params.sectionId;
+    const pieceId = this.props.match.params.pieceId;
+      try {
+          const res = await axios.delete(`/api/projects/${projectId}/sections/${sectionId}/pieces/${pieceId}`)
+          this.setState({redirect: true})
+          return res.data
+      } catch(err) {
+          console.log(err)
+      }
+  }
+
   render() {
+    const projectId = this.props.match.params.projectId
+    const sectionId = this.props.match.params.sectionId;
+    const pieceId = this.props.match.params.pieceId;
     return (
       <div>
-        <h4>{this.state.piece.pieceLabel}</h4>
-        <span>{this.state.piece.pieceLength} &times; {this.state.piece.pieceWidth} &times; {this.state.piece.pieceHeight}</span>
+            {this.state.redirect? 
+                <Redirect to={`/projects/${projectId}/sections/${sectionId}`}/>
+                :
+                <div>
+                    <h4>{this.state.piece.pieceLabel}</h4>
+                    <span>{this.state.piece.pieceLength} &times; {this.state.piece.pieceWidth} &times; {this.state.piece.pieceHeight}</span>
+                    <button onClick={this._deletePiece}>Delete Piece</button>
+                </div>
+            }
       </div>
     );
   }

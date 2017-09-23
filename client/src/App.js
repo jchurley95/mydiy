@@ -19,7 +19,7 @@ class App extends Component {
           </div>
           <div>
             <Link to={`/project/new`}>
-              Build A New Project
+            <button>Build A New Project</button>
             </Link>
           </div>
           <Route exact path="/" component={ProjectList} />

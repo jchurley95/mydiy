@@ -27,9 +27,11 @@ class Api::PiecesController < ApplicationController
     end
     
     def destroy
+        @project = Project.find params[:project_id]
+        @section = @project.sections.find params[:section_id]
         @piece = Piece.find(params[:id])
         @piece.destroy
-        redirect_to api_project_section_pieces_path
+        # redirect_to api_project_section_pieces_path
     end
     
     private

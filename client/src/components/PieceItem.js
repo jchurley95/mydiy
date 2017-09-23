@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
+
 
 class PieceItem extends Component {
   constructor() {
@@ -59,6 +60,9 @@ class PieceItem extends Component {
                 <div>
                     <h4>{this.state.piece.pieceLabel}</h4>
                     <h4><span>{this.state.piece.pieceLength} &times; {this.state.piece.pieceWidth} &times; {this.state.piece.pieceHeight}</span></h4>
+                    <Link to={`/projects/${projectId}/sections/${sectionId}/editpiece/${pieceId}`}><Button>Edit Piece</Button></Link>
+                    <br />
+                    <br />
                     <Button onClick={this._deletePiece}>Delete Piece</Button>
                 </div>
             }

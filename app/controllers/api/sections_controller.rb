@@ -20,7 +20,7 @@ class Api::SectionsController < ApplicationController
     def update
         @section = Section.find(params[:id])
         @section.update!(section_params)
-        redirect_to api_project_section_path(@section)
+        # redirect_to api_project_section_path(@section)
     end
     
     def destroy

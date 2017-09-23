@@ -85,6 +85,9 @@ class SectionItem extends Component {
                         </div>
                     ))}
                     <hr />
+                    <Link to={`/projects/${projectId}/editsection/${sectionId}`}><Button>Edit Section</Button></Link>
+                    <br />
+                    <br />
                     <Button onClick={this._deleteSection}>Delete Section</Button>
                 </div>
           }

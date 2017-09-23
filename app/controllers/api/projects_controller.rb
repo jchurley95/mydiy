@@ -17,7 +17,7 @@ class Api::ProjectsController < ApplicationController
     def update
         @project = Project.find(params[:id])
         @project.update!(project_params)
-        redirect_to api_project_path(@project)
+        # redirect_to api_project_path(@project)
     end
     
     def destroy

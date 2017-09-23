@@ -7,9 +7,17 @@ export default class NewProject extends Component {
     constructor(){
         super();
         this.state = {
-            project: {},
+            project: {
+                name: '',
+                description: ''
+            },
             redirect: false
         }
+    }
+
+    componentWillMount() {
+        const projectId = this.props.match.params.projectId
+        this._fetchProject(projectId)       
     }
 
     _handleChange = (e) => {
@@ -19,12 +27,34 @@ export default class NewProject extends Component {
             project: newState
         });
     }
-    
-    _addProject = async (e) => {
+
+    _fetchProject = async (projectId) => {
+        try {
+            const res = await axios.get(`/api/projects/${projectId}`)
+            await this.setState({
+                project: {
+                    name: res.data.name,
+                    description: res.data.description
+                }
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }  
+
+    _editProject = async (e) => {
         e.preventDefault();
         const payload = this.state.project
-        const res = await axios.post('/api/projects', payload)
-        this.setState({redirect: true});
+        const projectId = this.props.match.params.projectId
+        try {
+            const res = await axios.put(`/api/projects/${projectId}`, payload)
+            this.setState({redirect: true})
+            return res.data
+        } 
+        catch (err) {
+            console.log(err)
+        }
     }
       
     render() {
@@ -33,7 +63,7 @@ export default class NewProject extends Component {
             {this.state.redirect? 
                 <Redirect to={`/`}/>
                 :
-                <form onSubmit={this._addProject}>
+                <form onSubmit={this._editProject}>
                     <div>
                         <label htmlFor="name">Project Name: </label>
                         <input onChange={this._handleChange} type="text" name="name" value={this.state.project.name} required/>
@@ -42,7 +72,7 @@ export default class NewProject extends Component {
                         <label htmlFor="description">Description: </label>
                         <input onChange={this._handleChange} type="text" name="description" value={this.state.project.description} />
                     </div>
-                    <Button>Start Building!</Button>
+                    <Button>Update Project</Button>
                 </form>
             }
 

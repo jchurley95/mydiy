@@ -3,39 +3,66 @@ import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 
-export default class NewPiece extends Component {
+export default class EditPiece extends Component {
     constructor(){
         super();
         this.state = {
-            newPiece: {
+            piece: {
                 pieceLabel: '',
                 pieceLength: 0,
                 pieceWidth: 0,
-                pieceHeight: 1,
-                section_id: 0,
-                project_id: 0
+                pieceHeight: 1
             },
             redirect: false
         }
     }
 
+    componentWillMount() {
+        const projectId = this.props.match.params.projectId
+        const sectionId = this.props.match.params.projectId
+        const pieceId = this.props.match.params.pieceId
+        this._fetchSection(projectId, sectionId, pieceId)       
+    }
+
     _handleChange = (e) => {
-        const newState = {...this.state.newPiece};
-        newState[e.target.name] = e.target.value;
+        const newState = {...this.state.project};
+        newState[e.target.pieceLabel] = e.target.value;
         this.setState({
-            newPiece: newState
+            piece: newState
         });
     }
-    
-    _addPieceToSection = async (e) => {
+
+    _fetchPiece = async (projectId, sectionId, pieceId) => {
+        try {
+            const res = await axios.get(`/api/projects/${projectId}/sections/${sectionId}/pieces/${pieceId}`)
+            await this.setState({
+                piece: {
+                    pieceLabel: res.data.pieceLabel,
+                    pieceLength: res.data.pieceLength,
+                    pieceWidth: res.data.pieceWidth,
+                    pieceHeight: res.data.pieceHeight
+                }
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }  
+
+    _editPiece = async (e) => {
         e.preventDefault();
-        const projectId = this.props.match.params.projectId;
-        const sectionId = this.props.match.params.sectionId;
-        this.state.newPiece.project_id = projectId;
-        this.state.newPiece.section_id = sectionId;
-        const payload = this.state.newPiece
-        const res = await axios.post(`/api/projects/${projectId}/sections/${sectionId}/pieces`, payload)
-        this.setState({redirect: true});
+        const payload = this.state.section
+        const projectId = this.props.match.params.projectId
+        const sectionId = this.props.match.params.sectionId
+        const pieceId = this.props.match.params.pieceId
+        try {
+            const res = await axios.put(`/api/projects/${projectId}/sections/${sectionId}/pieces/${pieceId}`, payload)
+            this.setState({redirect: true})
+            return res.data
+        } 
+        catch (err) {
+            console.log(err)
+        }
     }
       
     render() {
@@ -64,7 +91,8 @@ export default class NewPiece extends Component {
                             <label htmlFor="pieceHeight">Piece Height (optional): </label>
                             <input onChange={this._handleChange} type="text" name="pieceHeight"  />
                         </div>
-                        <Button>Add Section To Project</Button>
+                        <Button>Update Piece</Button>
+                        
                     </form>
                 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 
 export default class NewProject extends Component {
     constructor(){
@@ -48,7 +49,7 @@ export default class NewProject extends Component {
                         <label htmlFor="description">Description: </label>
                         <input onChange={this._handleChange} type="text" name="description" value={this.state.newSection.description} />
                     </div>
-                    <button>Add Section To Project</button>
+                    <Button>Add Section To Project</Button>
                 </form>
             }
 

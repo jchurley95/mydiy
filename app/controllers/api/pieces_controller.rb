@@ -23,7 +23,7 @@ class Api::PiecesController < ApplicationController
     def update
         @piece = Piece.find(params[:id])
         @piece.update!(piece_params)
-        redirect_to api_project_section_piece_path(@piece)
+        # redirect_to api_project_section_piece_path(@piece)
     end
     
     def destroy

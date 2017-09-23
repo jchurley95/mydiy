@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
 import ProjectList from "./components/ProjectList";
 import ProjectItem from "./components/ProjectItem";
 import NewProject from './components/NewProject';
+import EditProject from './components/EditProject';
+
 import SectionItem from './components/SectionItem';
 import NewSection from './components/NewSection';
+import EditSection from './components/EditSection';
+
 import PieceItem from './components/PieceItem';
 import NewPiece from './components/NewPiece';
+import EditPiece from './components/EditPiece';
+
 import "./App.css";
 import { Button } from 'react-bootstrap';
 
@@ -26,9 +33,12 @@ class App extends Component {
           <Route exact path="/" component={ProjectList} />
           <Route exact path="/project/new" component={NewProject} />
           <Route exact path="/projects/:projectId" component={ProjectItem} />
+          <Route exact path="/editproject/:projectId" component={EditProject} />
           <Route exact path="/projects/:projectId/section/new" component={NewSection} />
+          <Route exact path="/projects/:projectId/editsection/:sectionId" component={EditSection} />
           <Route exact path="/projects/:projectId/sections/:sectionId" component={SectionItem} />
           <Route exact path="/projects/:projectId/section/:sectionId/piece/new" component={NewPiece} />
+          <Route exact path="/projects/:projectId/sections/:sectionId/editpiece/:pieceId" component={EditPiece} />
           <Route exact path="/projects/:projectId/sections/:sectionId/pieces/:pieceId" component={PieceItem} />
         </div>
       </Router>

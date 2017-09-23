@@ -45,14 +45,14 @@ class SectionItem extends Component {
   } 
 
   render() {
+    const projectId = this.props.match.params.projectId
+    const sectionId = this.props.match.params.sectionId;
     return (
       <div>
         {/* <img src={this.state.section.sectionPictureURL} alt="" /> */}
         <h1>{this.state.section.name}</h1>
         {this.state.pieces.map(piece => (
-          <div key={piece.id}>
-            <h4>{piece.pieceLabel}</h4>
-          </div>
+          <Link to={`/projects/${projectId}/sections/${sectionId}/pieces/${piece.id}`}><h4>{piece.pieceLabel}</h4></Link>
         ))}
       </div>
     );

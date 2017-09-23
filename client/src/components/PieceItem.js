@@ -41,4 +41,4 @@ class PieceItem extends Component {
   }
 }
 
-export default SectionItem;
+export default PieceItem;

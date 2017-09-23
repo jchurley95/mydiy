@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ProjectList from "./components/ProjectList";
 import ProjectItem from "./components/ProjectItem";
 import SectionItem from './components/SectionItem';
-import PieceItem from './componenets/PieceItem';
+import PieceItem from './components/PieceItem';
 import "./App.css";
 
 class App extends Component {

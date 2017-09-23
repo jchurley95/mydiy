@@ -37,7 +37,7 @@ class ProjectList extends Component {
       <div>
         <h1>All Projects</h1>
         {this.state.projects.map(project => (
-          <div>
+          <div key={project.id}>
             <Link to={`/projects/${project.id}`} >{project.name}</Link> 
           </div>
         ))}

@@ -1,6 +1,7 @@
 class Api::SectionsController < ApplicationController
     def index
-        @sections = Section.all
+        @project = Project.find params[:project_id]
+        @sections = @project.sections.all
         render json: @sections
     end
     
@@ -10,8 +11,14 @@ class Api::SectionsController < ApplicationController
     end
     
     def show
-        @section = Section.find(params[:id])
-        render json: @section
+        @project = Project.find params[:project_id]
+        @section = @project.sections.find params[:id]
+        @pieces = @section.pieces.all
+        render json: {
+            project: @project,
+            section: @section,
+            pieces: @pieces
+        }
     end
     
     def update

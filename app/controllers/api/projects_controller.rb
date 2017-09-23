@@ -5,7 +5,7 @@ class Api::ProjectsController < ApplicationController
     end
     
     def create
-        @project = Project.create(project_params)
+        @project = Project.create!(project_params)
         redirect_to api_project_path(@project)
     end
     

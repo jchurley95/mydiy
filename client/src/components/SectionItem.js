@@ -49,7 +49,7 @@ class SectionItem extends Component {
     const sectionId = this.props.match.params.sectionId;
     return (
       <div>
-        {/* <img src={this.state.section.sectionPictureURL} alt="" /> */}
+        <img src={this.state.section.sectionPictureURL} alt="" />
         <h3>Section Name: {this.state.section.name}</h3>
         {this.state.pieces.map(piece => (
             <div key={piece.id}>

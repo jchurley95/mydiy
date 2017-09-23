@@ -40,13 +40,15 @@ class ProjectItem extends Component {
       await this.setState({error: err.message})
       return err.message
     }
-  } 
+  }
 
   render() {
+    const projectId = this.props.match.params.projectId;
     return (
       <div>
         <img src={this.state.project.projectPictureURL} alt="" />
         <h2>Project Name: {this.state.project.name}</h2>
+        <Link to={`/projects/${projectId}/section/new`}>Create New Section</Link>
         {this.state.sections.map(section => (
             <div key={section.id}>
                 <Link to={`/projects/${this.state.project.id}/sections/${section.id}`}><h4>{section.name}</h4></Link>

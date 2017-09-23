@@ -7,8 +7,10 @@ class Api::PiecesController < ApplicationController
     end
     
     def create
+        @project = Project.find params[:project_id]
+        @section = @project.sections.find params[:section_id]
         @piece = Piece.create(piece_params)
-        redirect_to api_project_section_piece_path(@piece)
+        redirect_to api_project_section_path(@section)
     end
     
     def show

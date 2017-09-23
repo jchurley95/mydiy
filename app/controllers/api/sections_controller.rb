@@ -6,8 +6,9 @@ class Api::SectionsController < ApplicationController
     end
     
     def create
+        @project = Project.find params[:project_id]
         @section = Section.create(section_params)
-        redirect_to api_project_section_path(@section)
+        redirect_to api_project_path(@project)
     end
     
     def show

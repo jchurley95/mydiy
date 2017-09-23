@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom'
 
 class ProjectItem extends Component {
   constructor() {
@@ -8,6 +10,7 @@ class ProjectItem extends Component {
     this.state = {
       project: {},
       sections: [],
+      redirect: false
     };
   }
 
@@ -42,18 +45,37 @@ class ProjectItem extends Component {
     }
   }
 
+  _deleteProject = async (e) => {
+    const projectId = this.props.match.params.projectId
+      try {
+          const res = await axios.delete(`/api/projects/${projectId}`)
+          this.setState({redirect: true})
+          return res.data
+      } catch(err) {
+          console.log(err)
+      }
+  }
+
   render() {
     const projectId = this.props.match.params.projectId;
     return (
       <div>
-        <img src={this.state.project.projectPictureURL} alt="" />
-        <h2>Project Name: {this.state.project.name}</h2>
-        <Link to={`/projects/${projectId}/section/new`}><button>Create New Section</button></Link>
-        {this.state.sections.map(section => (
-            <div key={section.id}>
-                <Link to={`/projects/${this.state.project.id}/sections/${section.id}`}><h4>{section.name}</h4></Link>
+          {this.state.redirect? 
+                <Redirect to={`/`}/>
+                :
+                <div>
+                <img src={this.state.project.projectPictureURL} alt="" />
+                <h2>Project Name: {this.state.project.name}</h2>
+                <Link to={`/projects/${projectId}/section/new`}><Button>Create New Section</Button></Link>
+                {this.state.sections.map(section => (
+                    <div key={section.id}>
+                        <Link to={`/projects/${this.state.project.id}/sections/${section.id}`}><h4>{section.name}</h4></Link>
+                    </div>
+                ))}
+                <hr />
+                <Button onClick={this._deleteProject}>Delete Project</Button>
             </div>
-        ))}
+          }
       </div>
     );
   }

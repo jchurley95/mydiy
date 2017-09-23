@@ -23,7 +23,7 @@ class Api::ProjectsController < ApplicationController
     def destroy
         @project = Project.find(params[:id])
         @project.destroy
-        redirect_to api_projects_path
+        # redirect_to api_projects_path
     end
     
     private

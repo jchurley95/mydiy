@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 
 class PieceItem extends Component {
   constructor() {
@@ -57,8 +58,8 @@ class PieceItem extends Component {
                 :
                 <div>
                     <h4>{this.state.piece.pieceLabel}</h4>
-                    <span>{this.state.piece.pieceLength} &times; {this.state.piece.pieceWidth} &times; {this.state.piece.pieceHeight}</span>
-                    <button onClick={this._deletePiece}>Delete Piece</button>
+                    <h4><span>{this.state.piece.pieceLength} &times; {this.state.piece.pieceWidth} &times; {this.state.piece.pieceHeight}</span></h4>
+                    <Button onClick={this._deletePiece}>Delete Piece</Button>
                 </div>
             }
       </div>

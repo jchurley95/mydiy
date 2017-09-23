@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom'
+
 
 class SectionItem extends Component {
   constructor() {
@@ -8,6 +11,7 @@ class SectionItem extends Component {
     this.state = {
       section: {},
       pieces: [],
+      redirect: false
     };
   }
 
@@ -43,24 +47,47 @@ class SectionItem extends Component {
       return err.message
     }
   } 
+  _deleteSection = async (e) => {
+    const projectId = this.props.match.params.projectId
+    const sectionId = this.props.match.params.sectionId;
+      try {
+          const res = await axios.delete(`/api/projects/${projectId}/sections/${sectionId}`)
+          this.setState({redirect: true})
+          return res.data
+      } catch(err) {
+          console.log(err)
+      }
+  }
 
   render() {
     const projectId = this.props.match.params.projectId
     const sectionId = this.props.match.params.sectionId;
     return (
       <div>
-        <img src={this.state.section.sectionPictureURL} alt="" />
-        <h3>Section Name: {this.state.section.name}</h3>
-        <h4>Description: {this.state.section.description}</h4>
-        <Link to={`/projects/${projectId}/section/${sectionId}/piece/new`}><button>Add A Piece</button></Link>
-        {this.state.pieces.map(piece => (
-            <div key={piece.id}>
-                <Link to={`/projects/${projectId}/sections/${sectionId}/pieces/${piece.id}`}>
-                <h4>{piece.pieceLabel}</h4>
-                <span>{piece.pieceLength} &times; {piece.pieceWidth} &times; {piece.pieceHeight}</span>
-                </Link>
-            </div>
-        ))}
+          {this.state.redirect? 
+                <Redirect to={`/projects/${projectId}`}/>
+                :
+                <div>
+                    <img src={this.state.section.sectionPictureURL} alt="" />
+                    <h3>Section Name: {this.state.section.name}</h3>
+                    <h4>Description: {this.state.section.description}</h4>
+                    <Link to={`/projects/${projectId}/section/${sectionId}/piece/new`}>
+                        <Button>Add A Piece</Button>
+                    </Link>
+                    
+                    {this.state.pieces.map(piece => (
+                        <div key={piece.id}>
+                            <Link to={`/projects/${projectId}/sections/${sectionId}/pieces/${piece.id}`}>
+                            <h4>{piece.pieceLabel}</h4>
+                            <span>{piece.pieceLength} &times; {piece.pieceWidth} &times; {piece.pieceHeight}</span>
+                            </Link>
+                            
+                        </div>
+                    ))}
+                    <hr />
+                    <Button onClick={this._deleteSection}>Delete Section</Button>
+                </div>
+          }
       </div>
     );
   }

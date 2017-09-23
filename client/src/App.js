@@ -8,6 +8,7 @@ import NewSection from './components/NewSection';
 import PieceItem from './components/PieceItem';
 import NewPiece from './components/NewPiece';
 import "./App.css";
+import { Button } from 'react-bootstrap';
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
           </div>
           <div>
             <Link to={`/project/new`}>
-            <button>Build A New Project</button>
+            <Button>Build A New Project</Button>
             </Link>
           </div>
           <Route exact path="/" component={ProjectList} />

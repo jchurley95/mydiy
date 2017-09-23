@@ -26,7 +26,7 @@ class Api::SectionsController < ApplicationController
     def destroy
         @section = Section.find(params[:id])
         @section.destroy
-        redirect_to api_project_sections_path
+        # redirect_to api_project_sections_path
     end
     
     private

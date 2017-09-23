@@ -51,9 +51,13 @@ class SectionItem extends Component {
       <div>
         <img src={this.state.section.sectionPictureURL} alt="" />
         <h3>Section Name: {this.state.section.name}</h3>
+        <Link to={`/projects/${projectId}/section/${sectionId}/piece/new`}>Add A Piece</Link>
         {this.state.pieces.map(piece => (
             <div key={piece.id}>
-                <Link to={`/projects/${projectId}/sections/${sectionId}/pieces/${piece.id}`}><h4>{piece.pieceLabel}</h4></Link>
+                <Link to={`/projects/${projectId}/sections/${sectionId}/pieces/${piece.id}`}>
+                <h4>{piece.pieceLabel}</h4>
+                <span>{piece.pieceLength} &times; {piece.pieceWidth} &times; {piece.pieceHeight}</span>
+                </Link>
             </div>
         ))}
       </div>

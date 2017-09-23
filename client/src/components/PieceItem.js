@@ -35,6 +35,7 @@ class PieceItem extends Component {
     return (
       <div>
         <h4>{this.state.piece.pieceLabel}</h4>
+        <span>{this.state.piece.pieceLength} &times; {this.state.piece.pieceWidth} &times; {this.state.piece.pieceHeight}</span>
       </div>
     );
   }

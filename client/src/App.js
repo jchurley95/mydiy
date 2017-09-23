@@ -27,7 +27,7 @@ class App extends Component {
           <Route exact path="/projects/:projectId" component={ProjectItem} />
           <Route exact path="/projects/:projectId/section/new" component={NewSection} />
           <Route exact path="/projects/:projectId/sections/:sectionId" component={SectionItem} />
-          <Route exact path="/projects/:projectId/sections/:sectionId/piece/new" component={NewPiece} />
+          <Route exact path="/projects/:projectId/section/:sectionId/piece/new" component={NewPiece} />
           <Route exact path="/projects/:projectId/sections/:sectionId/pieces/:pieceId" component={PieceItem} />
         </div>
       </Router>

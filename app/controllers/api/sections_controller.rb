@@ -14,12 +14,7 @@ class Api::SectionsController < ApplicationController
     def show
         @project = Project.find params[:project_id]
         @section = @project.sections.find params[:id]
-        @pieces = @section.pieces.all
-        render json: {
-            project: @project,
-            section: @section,
-            pieces: @pieces
-        }
+        render json: @section
     end
     
     def update

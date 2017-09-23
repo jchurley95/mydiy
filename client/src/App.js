@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, } from "react-router-dom";
 import ProjectList from "./components/ProjectList";
 import ProjectItem from "./components/ProjectItem";
 import SectionItem from './components/SectionItem';
@@ -12,7 +12,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <div>
-            <h1>scrapsave</h1>
+            <h1>ScrapSave</h1>
           </div>
           <Route exact path="/" component={ProjectList} />
           <Route path="/projects/:projectId" component={ProjectItem} />

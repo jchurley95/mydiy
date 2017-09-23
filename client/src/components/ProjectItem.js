@@ -46,9 +46,11 @@ class ProjectItem extends Component {
     return (
       <div>
         <img src={this.state.project.projectPictureURL} alt="" />
-        <h1>{this.state.project.name}</h1>
+        <h2>Project Name: {this.state.project.name}</h2>
         {this.state.sections.map(section => (
-            <Link to={`/projects/${this.state.project.id}/sections/${section.id}`}><h4>{section.name}</h4></Link>
+            <div key={section.id}>
+                <Link to={`/projects/${this.state.project.id}/sections/${section.id}`}><h4>{section.name}</h4></Link>
+            </div>
         ))}
       </div>
     );

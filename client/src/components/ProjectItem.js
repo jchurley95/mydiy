@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class ProjectItem extends Component {
   constructor() {
@@ -11,7 +12,8 @@ class ProjectItem extends Component {
   }
 
   componentWillMount() {
-    const projectId = this.props.match.params.id;
+    const projectId = this.props.match.params.projectId;
+    console.log("projectId in ProjectItem is: " + projectId)
     this._fetchProject(projectId)
     this._fetchSections(projectId)
   }
@@ -46,9 +48,7 @@ class ProjectItem extends Component {
         <img src={this.state.project.projectPictureURL} alt="" />
         <h1>{this.state.project.name}</h1>
         {this.state.sections.map(section => (
-          <div key={section.id}>
-            <h4>{section.name}</h4>
-          </div>
+            <Link to={`/projects/${this.state.project.id}/sections/${section.id}`}><h4>{section.name}</h4></Link>
         ))}
       </div>
     );

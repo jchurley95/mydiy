@@ -7,6 +7,9 @@ export default class NewPiece extends Component {
     constructor(){
         super();
         this.state = {
+            project: {
+                projectLengthList: []
+            },
             section: {
                 sectionLengthsList: []
             },
@@ -28,7 +31,20 @@ export default class NewPiece extends Component {
         const sectionId = this.props.match.params.sectionId;
         console.log("sectionId in SectionItem is: " + sectionId)
         this._fetchSection(projectId, sectionId)
+        this._fetchProject(projectId);
     }
+
+    _fetchProject = async (projectId) => {
+        try {
+          const response = await axios.get(`/api/projects/${projectId}`)
+          await this.setState({project: response.data});
+          return response.data;
+        }
+        catch (err) {
+          await this.setState({error: err.message})
+          return err.message
+        }
+    } 
     
     _fetchSection = async (projectId, sectionId) => {
         try {
@@ -68,6 +84,21 @@ export default class NewPiece extends Component {
         console.log(payload);
         try {
             const res = await axios.put(`/api/projects/${projectId}/sections/${sectionId}`, payload)
+            this.setState({redirect: true})
+            return res.data
+        } 
+        catch (err) {
+            console.log(err)
+        }
+    }
+    _addLengthToProjectList = async (projectId) => {
+        console.log(this.state.newPiece.pieceLength);
+        this.state.project.projectLengthList.push(this.state.newPiece.pieceLength);
+        const payload = this.state.project
+        console.log(payload.projectLengthList);
+        console.log(payload);
+        try {
+            const res = await axios.put(`/api/projects/${projectId}`, payload)
             this.setState({redirect: true})
             return res.data
         } 

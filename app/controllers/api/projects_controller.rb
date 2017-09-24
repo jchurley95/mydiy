@@ -29,6 +29,6 @@ class Api::ProjectsController < ApplicationController
     private
     
     def project_params
-        params.require(:project).permit(:name, :projectPhotoURL, :description, :totalCostOfProject, :totalNumberOfBoards, :cutPlan)
+        params.require(:project).permit(:name, :projectPhotoURL, :description, :totalCostOfProject, :totalNumberOfBoards, :cutPlan, {projectLengthList: []})
     end
 end

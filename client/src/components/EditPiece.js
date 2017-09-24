@@ -21,11 +21,11 @@ export default class EditPiece extends Component {
         const projectId = this.props.match.params.projectId
         const sectionId = this.props.match.params.projectId
         const pieceId = this.props.match.params.pieceId
-        this._fetchSection(projectId, sectionId, pieceId)       
+        this._fetchPiece(projectId, sectionId, pieceId)       
     }
 
     _handleChange = (e) => {
-        const newState = {...this.state.project};
+        const newState = {...this.state.piece};
         newState[e.target.pieceLabel] = e.target.value;
         this.setState({
             piece: newState
@@ -51,7 +51,7 @@ export default class EditPiece extends Component {
 
     _editPiece = async (e) => {
         e.preventDefault();
-        const payload = this.state.section
+        const payload = this.state.piece
         const projectId = this.props.match.params.projectId
         const sectionId = this.props.match.params.sectionId
         const pieceId = this.props.match.params.pieceId
@@ -74,24 +74,24 @@ export default class EditPiece extends Component {
                 {this.state.redirect? 
                     <Redirect to={`/projects/${projectId}/sections/${sectionId}`}/>
                     :
-                    <form onSubmit={this._addPieceToSection}>
+                    <form onSubmit={this._editPiece}>
                         <div>
                             <label htmlFor="pieceLabel">Piece Label: </label>
-                            <input onChange={this._handleChange} type="text" pieceLabel="pieceLabel"  required/>
+                            <input onChange={this._handleChange} type="text" pieceLabel="pieceLabel"  value={this.state.piece.pieceLabel} required/>
                         </div>
                         <div>
                             <label htmlFor="pieceLength">Length: </label>
-                            <input onChange={this._handleChange} type="text" name="pieceLength" required/>
+                            <input onChange={this._handleChange} type="text" name="pieceLength" value={this.state.piece.pieceLength} required/>
                         </div>
                         <div>
                             <label htmlFor="pieceWidth">Width: </label>
-                            <input onChange={this._handleChange} type="text" name="pieceWidth"  required/>
+                            <input onChange={this._handleChange} type="text" name="pieceWidth"  value={this.state.piece.pieceWidth} required/>
                         </div>
                         <div>
                             <label htmlFor="pieceHeight">Piece Height (optional): </label>
-                            <input onChange={this._handleChange} type="text" name="pieceHeight"  />
+                            <input onChange={this._handleChange} type="text" name="pieceHeight"  value={this.state.piece.pieceHeight}/>
                         </div>
-                        <Button>Update Piece</Button>
+                        <Button onClick={this._editPiece}>Update Piece</Button>
                         
                     </form>
                 }

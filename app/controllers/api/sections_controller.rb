@@ -32,6 +32,6 @@ class Api::SectionsController < ApplicationController
     private
     
     def section_params
-        params.require(:section).permit(:name, :sectionPhotoURL, :description, :totalCostOfSection, :totalNumberOfBoards, :cutPlan, :project_id)
+        params.require(:section).permit(:name, :sectionPhotoURL, :description, :totalCostOfSection, :totalNumberOfBoards, :cutPlan, {sectionLengthsList: []}, :project_id)
     end
 end

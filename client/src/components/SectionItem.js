@@ -9,7 +9,9 @@ class SectionItem extends Component {
   constructor() {
     super();
     this.state = {
-      section: {},
+      section: {
+        sectionLengthsList: []
+      },
       pieces: [],
       redirect: false
     };
@@ -24,10 +26,17 @@ class SectionItem extends Component {
     this._fetchPieces(projectId, sectionId)
   }
 
+  // _setLengthsList = async (projectId, sectionId) => {
+    
+  //   this.state.pieces.map((piece) => {
+
+  //   })
+  // }
+
   _fetchSection = async (projectId, sectionId) => {
     try {
       const response = await axios.get(`/api/projects/${projectId}/sections/${sectionId}`)
-      await this.setState({section: response.data});
+      this.setState({section: response.data});
       return response.data;
     }
     catch (err) {
@@ -58,6 +67,7 @@ class SectionItem extends Component {
           console.log(err)
       }
   }
+  
 
   render() {
     const projectId = this.props.match.params.projectId

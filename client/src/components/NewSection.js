@@ -29,6 +29,7 @@ export default class NewProject extends Component {
         const projectId = this.props.match.params.projectId;
         this.state.newSection.project_id = projectId;
         const payload = this.state.newSection
+        console.log(payload)
         const res = await axios.post(`/api/projects/${projectId}/sections`, payload)
         this.setState({redirect: true});
     }
@@ -49,7 +50,7 @@ export default class NewProject extends Component {
                         <label htmlFor="description">Description: </label>
                         <input onChange={this._handleChange} type="text" name="description" value={this.state.newSection.description} />
                     </div>
-                    <Button>Add Section To Project</Button>
+                    <Button onClick={this._addSectionToProject}>Add Section To Project</Button>
                 </form>
             }
 

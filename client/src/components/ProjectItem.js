@@ -55,6 +55,7 @@ class ProjectItem extends Component {
           console.log(err)
       }
   }
+ 
 
   render() {
     const projectId = this.props.match.params.projectId;

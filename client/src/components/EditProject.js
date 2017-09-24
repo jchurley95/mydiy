@@ -72,7 +72,7 @@ export default class NewProject extends Component {
                         <label htmlFor="description">Description: </label>
                         <input onChange={this._handleChange} type="text" name="description" value={this.state.project.description} />
                     </div>
-                    <Button>Update Project</Button>
+                    <Button onClick={this._editProject}>Update Project</Button>
                 </form>
             }
 

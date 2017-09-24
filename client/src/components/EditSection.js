@@ -22,7 +22,7 @@ export default class NewProject extends Component {
     }
 
     _handleChange = (e) => {
-        const newState = {...this.state.project};
+        const newState = {...this.state.section};
         newState[e.target.name] = e.target.value;
         this.setState({
             section: newState
@@ -76,7 +76,7 @@ export default class NewProject extends Component {
                         <label htmlFor="description">Description: </label>
                         <input onChange={this._handleChange} type="text" name="description" value={this.state.section.description} />
                     </div>
-                    <Button>Update Section</Button>
+                    <Button onClick={this._editSection}>Update Section</Button>
                 </form>
             }
 

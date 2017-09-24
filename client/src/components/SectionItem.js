@@ -89,7 +89,7 @@ class SectionItem extends Component {
                         <div key={piece.id}>
                             <Link to={`/projects/${projectId}/sections/${sectionId}/pieces/${piece.id}`}>
                             <h4>{piece.pieceLabel}</h4>
-                            <span>{piece.pieceLength} &times; {piece.pieceWidth} &times; {piece.pieceHeight}</span>
+                            <span>{piece.pieceLength}" &times; {piece.pieceWidth}" &times; {piece.pieceHeight}"</span>
                             </Link>
                             
                         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 
 export default class NewProject extends Component {
@@ -17,7 +17,7 @@ export default class NewProject extends Component {
 
     componentWillMount() {
         const projectId = this.props.match.params.projectId
-        const sectionId = this.props.match.params.projectId
+        const sectionId = this.props.match.params.sectionId
         this._fetchSection(projectId, sectionId)       
     }
 
@@ -67,17 +67,24 @@ export default class NewProject extends Component {
             {this.state.redirect? 
                 <Redirect to={`/projects/${projectId}/sections/${sectionId}`}/>
                 :
-                <form onSubmit={this._editSection}>
+                <div>
+                    <form onSubmit={this._editSection}>
+                        <div>
+                            <label htmlFor="name">Section Name: </label>
+                            <input onChange={this._handleChange} type="text" name="name" value={this.state.section.name} required/>
+                        </div>
+                        <div>
+                            <label htmlFor="description">Description: </label>
+                            <input onChange={this._handleChange} type="text" name="description" value={this.state.section.description} />
+                        </div>
+                        <Button onClick={this._editSection}>Update Section</Button>
+                    </form>
                     <div>
-                        <label htmlFor="name">Section Name: </label>
-                        <input onChange={this._handleChange} type="text" name="name" value={this.state.section.name} required/>
+                        <Link to={`/projects/${projectId}/sections/${sectionId}`}>
+                                <Button>Go Back</Button>
+                        </Link>
                     </div>
-                    <div>
-                        <label htmlFor="description">Description: </label>
-                        <input onChange={this._handleChange} type="text" name="description" value={this.state.section.description} />
-                    </div>
-                    <Button onClick={this._editSection}>Update Section</Button>
-                </form>
+                </div>
             }
 
             

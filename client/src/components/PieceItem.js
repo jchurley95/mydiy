@@ -95,19 +95,22 @@ class PieceItem extends Component {
   render() {
     const projectId = this.props.match.params.projectId
     const sectionId = this.props.match.params.sectionId;
-    const pieceId = this.props.match.params.pieceId;
+    const pieceId = this.state.piece.id;
     return (
       <div>
-            {this.state.redirect? 
+            {this.state.redirect ? 
                 <Redirect to={`/projects/${projectId}/sections/${sectionId}`}/>
                 :
                 <div>
                     <h4>{this.state.piece.pieceLabel}</h4>
                     <h4><span>{this.state.piece.pieceLength} &times; {this.state.piece.pieceWidth} &times; {this.state.piece.pieceHeight}</span></h4>
-                    <Link to={`/projects/${projectId}/sections/${sectionId}/editpiece/${pieceId}`}><Button>Edit Piece</Button></Link>
+                    <Link to={`/proj/${projectId}/sect/${sectionId}/editpiece/${pieceId}`}><Button>Edit Piece</Button></Link>
                     <br />
                     <br />
                     <Button onClick={this._deletePiece}>Delete Piece</Button>
+                    <Link to={`/projects/${projectId}/section/${sectionId}`}>
+                        <Button>Go Back</Button>
+                    </Link>
                 </div>
             }
       </div>

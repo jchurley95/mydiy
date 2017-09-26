@@ -1,7 +1,7 @@
 class Api::PiecesController < ApplicationController
     def index
         @project = Project.find params[:project_id]
-        @section = @project.sections.find params[:section_id]
+        @section = Section.find params[:section_id]
         @pieces = @section.pieces
         render json: @pieces
     end
@@ -14,9 +14,9 @@ class Api::PiecesController < ApplicationController
     end
     
     def show
-        @project = Project.find params[:project_id]
-        @section = @project.sections.find params[:section_id]
-        @piece = @section.pieces.find params[:id]
+        # @project = Project.find params[:project_id]
+        # @section = @project.sections.find params[:section_id]
+        @piece = Piece.find params[:id]
         render json: @piece
     end
     

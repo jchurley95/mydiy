@@ -1,7 +1,7 @@
 class Api::SectionsController < ApplicationController
     def index
         @project = Project.find params[:project_id]
-        @sections = @project.sections.all
+        @sections = @project.sections
         render json: @sections
     end
     
@@ -13,7 +13,7 @@ class Api::SectionsController < ApplicationController
     
     def show
         @project = Project.find params[:project_id]
-        @section = @project.sections.find params[:id]
+        @section = Section.find params[:id]
         render json: @section
     end
     

@@ -75,6 +75,9 @@ class ProjectItem extends Component {
                 ))}
                 <hr />
                 <Link to={`/editproject/${projectId}`}><Button>Edit Project</Button></Link>
+                <Link to={`/`}>
+                        <Button>Go Back Home</Button>
+                </Link>
                 <br />
                 <br />
                 <Button onClick={this._deleteProject}>Delete Project</Button>

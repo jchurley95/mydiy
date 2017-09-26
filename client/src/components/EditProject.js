@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 
 export default class NewProject extends Component {
@@ -58,22 +58,30 @@ export default class NewProject extends Component {
     }
       
     render() {
+        const projectId = this.props.match.params.projectId;
         return (
         <div>
             {this.state.redirect? 
-                <Redirect to={`/`}/>
+                <Redirect to={`/projects/${projectId}`}/>
                 :
-                <form onSubmit={this._editProject}>
+                <div>
+                    <form onSubmit={this._editProject}>
+                        <div>
+                            <label htmlFor="name">Project Name: </label>
+                            <input onChange={this._handleChange} type="text" name="name" value={this.state.project.name} required/>
+                        </div>
+                        <div>
+                            <label htmlFor="description">Description: </label>
+                            <input onChange={this._handleChange} type="text" name="description" value={this.state.project.description} />
+                        </div>
+                        <Button onClick={this._editProject}>Update Project</Button>
+                    </form>
                     <div>
-                        <label htmlFor="name">Project Name: </label>
-                        <input onChange={this._handleChange} type="text" name="name" value={this.state.project.name} required/>
+                    <Link to={`/projects/${projectId}`}>
+                            <Button>Go Back</Button>
+                    </Link>
                     </div>
-                    <div>
-                        <label htmlFor="description">Description: </label>
-                        <input onChange={this._handleChange} type="text" name="description" value={this.state.project.description} />
-                    </div>
-                    <Button onClick={this._editProject}>Update Project</Button>
-                </form>
+                </div>
             }
 
             

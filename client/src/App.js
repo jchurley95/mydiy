@@ -31,15 +31,15 @@ class App extends Component {
             </Link>
           </div>
           <Route exact path="/" component={ProjectList} />
-          <Route exact path="/project/new" component={NewProject} />
+          <Route path="/project/new" component={NewProject} />
           <Route exact path="/projects/:projectId" component={ProjectItem} />
-          <Route exact path="/editproject/:projectId" component={EditProject} />
+          <Route path="/editproject/:projectId" component={EditProject} />
           <Route exact path="/projects/:projectId/section/new" component={NewSection} />
-          <Route exact path="/projects/:projectId/editsection/:sectionId" component={EditSection} />
+          <Route path="/projects/:projectId/editsection/:sectionId" component={EditSection} />
           <Route exact path="/projects/:projectId/sections/:sectionId" component={SectionItem} />
-          <Route exact path="/projects/:projectId/section/:sectionId/piece/new" component={NewPiece} />
-          <Route exact path="/projects/:projectId/sections/:sectionId/editpiece/:pieceId" component={EditPiece} />
-          <Route exact path="/projects/:projectId/sections/:sectionId/pieces/:pieceId" component={PieceItem} />
+          <Route exact path="/proj/:projectId/sect/:sectionId/editpiece/:pieceId" component={EditPiece} />
+          <Route path="/projects/:projectId/sections/:sectionId/pieces/:pieceId" component={PieceItem} />
+          <Route path="/projects/:projectId/sections/:sectionId/piece/new" component={NewPiece} />
         </div>
       </Router>
     );

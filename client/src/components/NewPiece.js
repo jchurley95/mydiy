@@ -133,7 +133,7 @@ export default class NewPiece extends Component {
                             <label htmlFor="pieceHeight">Piece Height (optional): </label>
                             <input onChange={this._handleChange} type="text" name="pieceHeight"  />
                         </div>
-                        <Button onClick={this._addPieceToSection}>Add Section To Project</Button>
+                        <Button onClick={this._addPieceToSection}>Add Piece</Button>
                     </form>
                 }
 

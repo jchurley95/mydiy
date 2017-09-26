@@ -70,8 +70,9 @@ class SectionItem extends Component {
   
 
   render() {
-    const projectId = this.props.match.params.projectId
+    const projectId = this.props.match.params.projectId;
     const sectionId = this.props.match.params.sectionId;
+
     return (
       <div>
           {this.state.redirect? 
@@ -81,7 +82,7 @@ class SectionItem extends Component {
                     <img src={this.state.section.sectionPictureURL} alt="" />
                     <h3>Section Name: {this.state.section.name}</h3>
                     <h4>Description: {this.state.section.description}</h4>
-                    <Link to={`/projects/${projectId}/section/${sectionId}/piece/new`}>
+                    <Link to={`/projects/${projectId}/sections/${sectionId}/piece/new`}>
                         <Button>Add A Piece</Button>
                     </Link>
                     
@@ -95,9 +96,12 @@ class SectionItem extends Component {
                         </div>
                     ))}
                     <hr />
-                    <Link to={`/projects/${projectId}/editsection/${sectionId}`}><Button>Edit Section</Button></Link>
+                    <Link to={`/projects/${projectId}/editsection/${this.state.section.id}`}><Button>Edit Section</Button></Link>
                     <br />
                     <br />
+                    <Link to={`/projects/${projectId}/`}>
+                        <Button>Go Back</Button>
+                    </Link>
                     <Button onClick={this._deleteSection}>Delete Section</Button>
                 </div>
           }

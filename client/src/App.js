@@ -22,13 +22,13 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div>
-            <Link to="/"><h1>ScrapSave</h1></Link>
-          </div>
-          <div>
-            <Link to={`/project/new`}>
-            <Button>Build A New Project</Button>
-            </Link>
+          <div className="Navbar-App">
+              <Link to="/"><h1>ScrapSave</h1></Link>
+              <hr />
+              <Link to={`/project/new`}>
+                <Button>Build A New Project</Button>
+              </Link>
+              
           </div>
           <Route exact path="/" component={ProjectList} />
           <Route path="/project/new" component={NewProject} />

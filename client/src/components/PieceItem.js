@@ -108,7 +108,7 @@ class PieceItem extends Component {
                     <br />
                     <br />
                     <Button onClick={this._deletePiece}>Delete Piece</Button>
-                    <Link to={`/projects/${projectId}/section/${sectionId}`}>
+                    <Link to={`/projects/${projectId}/sections/${sectionId}`}>
                         <Button>Go Back</Button>
                     </Link>
                 </div>

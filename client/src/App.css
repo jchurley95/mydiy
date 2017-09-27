@@ -1,6 +1,10 @@
 .App {
   text-align: center;
 }
+.navbar-App {
+  display: flex;
+  justify-content: space-between;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
